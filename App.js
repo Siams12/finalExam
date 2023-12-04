@@ -1,14 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { NavigationContainer } from "@react-navigation/native";
+import { Provider, useDispatch } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistStore } from "redux-persist";
+import { ActivityIndicator, Button } from "react-native";
+import { Chat } from "./chat";
+import { StyleSheet } from "react-native-web";
+import { Login } from "./name";
+import { useNavigation } from "@react-navigation/native";
+//const persistor = persistStore(store);
+
 
 export default function App() {
+  const Stack = createNativeStackNavigator();
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name= "Login" component={Login} />
+            <Stack.Screen name="Chat" component={Chat} />
+          </Stack.Navigator>
+        </NavigationContainer>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
